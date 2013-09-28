@@ -110,12 +110,13 @@ public class MainActivity extends Activity {
 		public Double getCurrency(String code) {
 			Double result = 0.0;
 
-			String API_KEY = "0b8ffb5684a9b3a8c45e49b65cdc6c56681053f1";
-			String URL_BEGIN = "http://currency-api.appspot.com/api/";
-			String URL_END = "/THB.json?key=" + API_KEY;
+			String URL_BEGIN = "http://rate-exchange.appspot.com/currency?from=";
+			String URL_END = "&to=THB&q=1";
 
 			StringBuilder str = new StringBuilder();
 			HttpClient client = new DefaultHttpClient();
+			
+			// http://rate-exchange.appspot.com/currency?from=USD&to=EUR&q=1
 			HttpGet httpGet = new HttpGet(URL_BEGIN + code + URL_END);
 
 			try {
@@ -133,7 +134,7 @@ public class MainActivity extends Activity {
 					}
 					try {
 						JSONObject jsonObject = new JSONObject(str.toString());
-						result = jsonObject.getDouble("amount");
+						result = jsonObject.getDouble("rate");
 						Log.d("LOG", result.toString());
 					} catch (JSONException e) {
 						e.printStackTrace();
