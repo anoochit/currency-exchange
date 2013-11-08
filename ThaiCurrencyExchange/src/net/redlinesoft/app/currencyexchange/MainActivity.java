@@ -110,13 +110,15 @@ public class MainActivity extends Activity {
 		public Double getCurrency(String code) {
 			Double result = 0.0;
 
-			String URL_BEGIN = "http://rate-exchange.appspot.com/currency?from=";
+			String URL_BEGIN = "http://currencyexchange-redcloud.rhcloud.com/exchange.php?from=";
 			String URL_END = "&to=THB&q=1";
 
 			StringBuilder str = new StringBuilder();
 			HttpClient client = new DefaultHttpClient();
 			
 			// http://rate-exchange.appspot.com/currency?from=USD&to=EUR&q=1
+			// http://currencyexchange-redcloud.rhcloud.com/exchange.php?from=HKD&to=THB
+			
 			HttpGet httpGet = new HttpGet(URL_BEGIN + code + URL_END);
 
 			try {
